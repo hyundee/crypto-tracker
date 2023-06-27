@@ -29,6 +29,7 @@ interface PriceProps {
   market_cap: number;
   market_cap_change_24h: number;
 }
+
 const Price = () => {
   const {
     price,

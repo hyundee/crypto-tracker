@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createHashRouter } from "react-router-dom";
 import Root from "./Root";
 import Coins from "./components/Coins";
 import Coin from "./components/Coin";
@@ -6,7 +6,7 @@ import Chart from "./components/Chart";
 import Price from "./components/Price";
 import Error from "./Error";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <Root />,
@@ -28,7 +28,6 @@ const router = createBrowserRouter([
             element: <Price />,
           },
         ],
-        errorElement: <Error />,
       },
     ],
     errorElement: <Error />,

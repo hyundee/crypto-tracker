@@ -1,10 +1,20 @@
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import styled from "styled-components";
 import { fetchCoins } from "../api";
-import { useRecoilValue, useSetRecoilState } from "recoil";
 import { isThemeAtom } from "../atoms";
-import { Helmet } from "react-helmet-async";
+
+interface ICoins {
+  id: string;
+  name: string;
+  symbol: string;
+  rank: number;
+  is_new: boolean;
+  is_active: boolean;
+  type: string;
+}
 
 const Wrapper = styled.div`
   padding: 40px 20px;
@@ -43,7 +53,8 @@ const Nav = styled.nav<{ motion: string }>`
 
 const LoadText = styled.span`
   text-align: center;
-  display: block;
+  display: flex;
+  margin-top: 150px;
 `;
 
 const Title = styled.h1`
@@ -57,8 +68,6 @@ const Img = styled.img`
   width: 35px;
   height: 35px;
 `;
-
-const CoinsList = styled.ul``;
 
 const Coin = styled.li<{ $isTheme: boolean }>`
   margin-bottom: 10px;
@@ -87,22 +96,12 @@ const Coin = styled.li<{ $isTheme: boolean }>`
   }
 `;
 
-interface ICoins {
-  id: string;
-  name: string;
-  symbol: string;
-  rank: number;
-  is_new: boolean;
-  is_active: boolean;
-  type: string;
-}
-
 const Coins = () => {
   const { isLoading, data } = useQuery<ICoins[]>(["allCoins"], fetchCoins);
   const isTheme = useRecoilValue(isThemeAtom);
   const setTheme = useSetRecoilState(isThemeAtom);
   const toggleTheme = () => {
-    setTheme((prev) => !prev);
+    setTheme((prev: boolean) => !prev);
   };
 
   return (
@@ -124,11 +123,11 @@ const Coins = () => {
       {isLoading ? (
         <LoadText>Loading...</LoadText>
       ) : (
-        <CoinsList>
+        <ul>
           {data?.slice(0, 100).map((coin) => (
             <Coin key={coin.id} $isTheme={isTheme}>
               <Link
-                to={`${coin.id}`}
+                to={`${coin.id}/chart`}
                 state={{ name: `${coin.name}`, symbol: `${coin.symbol}` }}
               >
                 <Img
@@ -139,7 +138,7 @@ const Coins = () => {
               </Link>
             </Coin>
           ))}
-        </CoinsList>
+        </ul>
       )}
     </Wrapper>
   );
