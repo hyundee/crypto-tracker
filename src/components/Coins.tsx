@@ -53,7 +53,7 @@ const Nav = styled.nav<{ motion: string }>`
 
 const LoadText = styled.span`
   text-align: center;
-  display: flex;
+  display: block;
   margin-top: 150px;
 `;
 
