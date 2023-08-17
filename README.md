@@ -1,6 +1,6 @@
 # 📊 crypto-tracker
 > ### https://hyundee.github.io/crypto-tracker
-- #### 현재 시점을 기준으로 암호화페의 정보와 차트, 가격을 제공해주는 앱
+- #### 현재 시점을 기준으로 암호화폐의 정보와 차트, 가격을 제공해주는 앱
 ![coin](https://github.com/hyundee/hyunflix/assets/125550186/bf006018-b6d6-4c2e-894a-7a4d4e4b5bb1)
 <br/>
 <br/>
